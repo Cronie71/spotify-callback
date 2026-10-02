@@ -1,1 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Spotify Callback</title>
+</head>
+<body>
+  <p>Spotify authorization received. You can return to the Shortcut.</p>
 
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("code");
+
+    if (code) {
+      document.body.innerHTML =
+        "<p>Authorization successful. You can return to Shortcuts.</p>";
+    } else {
+      document.body.innerHTML =
+        "<p>Authorization failed or was cancelled.</p>";
+    }
+  </script>
+</body>
+</html>
