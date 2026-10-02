@@ -1,199 +1,261 @@
-<style>
-  * {
-    box-sizing: border-box;
-  }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
 
-  html,
-  body {
-    margin: 0;
-    width: 100%;
-    min-height: 100%;
-    font-family:
-      -apple-system,
-      BlinkMacSystemFont,
-      "SF Pro Display",
-      "SF Pro Text",
-      sans-serif;
-  }
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
 
-  body {
-    min-height: 100vh;
-    min-height: 100dvh;
+  <title>Spotify Authorization</title>
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-    padding:
-      max(24px, env(safe-area-inset-top))
-      max(24px, env(safe-area-inset-right))
-      max(24px, env(safe-area-inset-bottom))
-      max(24px, env(safe-area-inset-left));
-
-    background:
-      radial-gradient(
-        circle at 15% 15%,
-        #e8dcff 0%,
-        transparent 42%
-      ),
-      radial-gradient(
-        circle at 85% 25%,
-        #d9efff 0%,
-        transparent 42%
-      ),
-      radial-gradient(
-        circle at 50% 100%,
-        #ffe1eb 0%,
-        transparent 48%
-      ),
-      #f7f5fb;
-
-    color: #242329;
-  }
-
-  .card {
-    width: 100%;
-    max-width: 420px;
-
-    padding: 38px 28px 30px;
-
-    text-align: center;
-
-    background: rgba(255, 255, 255, 0.78);
-
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-
-    border: 1px solid rgba(255, 255, 255, 0.8);
-
-    border-radius: 30px;
-
-    box-shadow:
-      0 18px 50px rgba(80, 70, 110, 0.14);
-  }
-
-  .icon {
-    width: 72px;
-    height: 72px;
-
-    margin: 0 auto 22px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 22px;
-
-    font-size: 34px;
-    font-weight: 600;
-
-    color: white;
-
-    background: #238636;
-  }
-
-  h1 {
-    margin: 0 0 12px;
-
-    font-size: 27px;
-    line-height: 1.2;
-    font-weight: 700;
-
-    letter-spacing: -0.5px;
-  }
-
-  p {
-    margin: 0 auto 28px;
-
-    max-width: 330px;
-
-    font-size: 16px;
-    line-height: 1.5;
-
-    color: #686572;
-  }
-
-  button {
-    width: 100%;
-
-    border: none;
-    border-radius: 16px;
-
-    padding: 17px 20px;
-
-    font-family: inherit;
-
-    font-size: 17px;
-    font-weight: 600;
-
-    color: white;
-
-    background: #238636;
-
-    box-shadow:
-      0 7px 18px rgba(0, 0, 0, 0.12);
-
-    cursor: pointer;
-
-    -webkit-tap-highlight-color: transparent;
-
-    transition:
-      transform 0.12s ease,
-      box-shadow 0.12s ease,
-      background 0.12s ease;
-  }
-
-  button:active {
-    transform: scale(0.98);
-
-    background: #1f7830;
-
-    box-shadow:
-      0 4px 10px rgba(0, 0, 0, 0.10);
-  }
-
-  .footer {
-    margin-top: 20px;
-
-    font-size: 12px;
-
-    color: #9996a3;
-  }
-
-  @media (prefers-color-scheme: dark) {
+    html,
     body {
+      margin: 0;
+      width: 100%;
+      min-height: 100%;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "SF Pro Text",
+        sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding:
+        max(24px, env(safe-area-inset-top))
+        max(24px, env(safe-area-inset-right))
+        max(24px, env(safe-area-inset-bottom))
+        max(24px, env(safe-area-inset-left));
+
       background:
         radial-gradient(
           circle at 15% 15%,
-          #41385a 0%,
+          #e8dcff 0%,
           transparent 42%
         ),
         radial-gradient(
           circle at 85% 25%,
-          #294252 0%,
+          #d9efff 0%,
           transparent 42%
         ),
         radial-gradient(
           circle at 50% 100%,
-          #513c46 0%,
+          #ffe1eb 0%,
           transparent 48%
         ),
-        #18171c;
+        #f7f5fb;
 
-      color: #f4f3f7;
+      color: #242329;
     }
 
     .card {
-      background: rgba(35, 34, 41, 0.78);
-      border-color: rgba(255, 255, 255, 0.08);
+      width: 100%;
+      max-width: 420px;
+
+      padding: 38px 28px 30px;
+
+      text-align: center;
+
+      background: rgba(255, 255, 255, 0.78);
+
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+
+      border: 1px solid rgba(255, 255, 255, 0.8);
+
+      border-radius: 30px;
+
+      box-shadow:
+        0 18px 50px rgba(80, 70, 110, 0.14);
+    }
+
+    .icon {
+      width: 72px;
+      height: 72px;
+
+      margin: 0 auto 22px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 22px;
+
+      font-size: 34px;
+      font-weight: 600;
+
+      color: white;
+
+      background: #238636;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+
+      font-size: 27px;
+      line-height: 1.2;
+      font-weight: 700;
+
+      letter-spacing: -0.5px;
     }
 
     p {
-      color: #b7b4bf;
+      margin: 0 auto 28px;
+
+      max-width: 330px;
+
+      font-size: 16px;
+      line-height: 1.5;
+
+      color: #686572;
+    }
+
+    button {
+      width: 100%;
+
+      border: none;
+      border-radius: 16px;
+
+      padding: 17px 20px;
+
+      font-family: inherit;
+
+      font-size: 17px;
+      font-weight: 600;
+
+      color: white;
+
+      background: #238636;
+
+      box-shadow:
+        0 7px 18px rgba(0, 0, 0, 0.12);
+
+      cursor: pointer;
+
+      -webkit-tap-highlight-color: transparent;
+
+      transition:
+        transform 0.12s ease,
+        box-shadow 0.12s ease,
+        background 0.12s ease;
+    }
+
+    button:active {
+      transform: scale(0.98);
+
+      background: #1f7830;
+
+      box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.10);
     }
 
     .footer {
-      color: #77747f;
+      margin-top: 20px;
+
+      font-size: 12px;
+
+      color: #9996a3;
     }
-  }
-</style>
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background:
+          radial-gradient(
+            circle at 15% 15%,
+            #41385a 0%,
+            transparent 42%
+          ),
+          radial-gradient(
+            circle at 85% 25%,
+            #294252 0%,
+            transparent 42%
+          ),
+          radial-gradient(
+            circle at 50% 100%,
+            #513c46 0%,
+            transparent 48%
+          ),
+          #18171c;
+
+        color: #f4f3f7;
+      }
+
+      .card {
+        background: rgba(35, 34, 41, 0.78);
+        border-color: rgba(255, 255, 255, 0.08);
+      }
+
+      p {
+        color: #b7b4bf;
+      }
+
+      .footer {
+        color: #77747f;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+
+    <div class="icon">
+      ✓
+    </div>
+
+    <h1>Spotify Authorization Successful</h1>
+
+    <p>
+      Spotify has successfully authorized your account.
+      Tap below to continue the Apple to Spotify shortcut.
+    </p>
+
+    <button id="continue">
+      Continue
+    </button>
+
+    <div class="footer">
+      Apple to Spotify
+    </div>
+
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("code");
+
+    document.getElementById("continue").onclick = function () {
+
+      if (!code) {
+        alert("No Spotify authorization code was received.");
+        return;
+      }
+
+      const shortcutURL =
+        "shortcuts://run-shortcut" +
+        "?name=Apple%20to%20Spotify" +
+        "&input=text" +
+        "&text=" + encodeURIComponent(code);
+
+      window.location.href = shortcutURL;
+    };
+  </script>
+
+</body>
+</html>
