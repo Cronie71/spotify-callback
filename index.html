@@ -2,22 +2,34 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Spotify Callback</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spotify Authorization</title>
 </head>
+
 <body>
-  <p>Spotify authorization received. You can return to the Shortcut.</p>
+  <h2>Spotify authorization successful</h2>
+  <p>Tap the button below to continue the Apple to Spotify shortcut.</p>
+
+  <button id="continue">Continue</button>
 
   <script>
     const params = new URLSearchParams(window.location.search);
     const code = params.get("code");
 
-    if (code) {
-      document.body.innerHTML =
-        "<p>Authorization successful. You can return to Shortcuts.</p>";
-    } else {
-      document.body.innerHTML =
-        "<p>Authorization failed or was cancelled.</p>";
-    }
+    document.getElementById("continue").onclick = function () {
+      if (!code) {
+        alert("No Spotify authorization code was received.");
+        return;
+      }
+
+      const shortcutURL =
+        "shortcuts://run-shortcut" +
+        "?name=Apple%20to%20Spotify" +
+        "&input=text" +
+        "&text=" + encodeURIComponent(code);
+
+      window.location.href = shortcutURL;
+    };
   </script>
 </body>
 </html>
